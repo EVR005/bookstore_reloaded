@@ -1,4 +1,3 @@
 client-new/node_modules/
 server-new/node_modules/
-server-new/.env/
-client-new/.env/
+*/.env
