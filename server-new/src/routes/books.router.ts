@@ -13,7 +13,7 @@ booksRouter.get("/test", (req: Request, res: Response) => {
   res.send("book route testing!");
 });
 
-booksRouter.get("/:value/:option", async (req, res) => {
+booksRouter.get("/:value/:option", async (req: Request, res: Response) => {
   if (req.params.option == "publisher") {
     try {
       const books = (await collections?.books
@@ -73,7 +73,7 @@ booksRouter.get("/:value/:option", async (req, res) => {
   }
 });
 
-booksRouter.get("/", async (req, res) => {
+booksRouter.get("/", async (req: Request, res: Response) => {
   try {
     const books = (await collections?.books?.find({}).toArray()) as Book[];
     res.status(200).send(books);
@@ -82,7 +82,7 @@ booksRouter.get("/", async (req, res) => {
   }
 });
 
-booksRouter.get("/stats", async (req, res) => {
+booksRouter.get("/stats", async (req: Request, res: Response) => {
   let result = [];
   let date = new Date(
     new Date(new Date().getTime() - 7 * 60 * 60 * 24 * 1000).toISOString()
@@ -178,7 +178,7 @@ booksRouter.get("/stats", async (req, res) => {
   console.log({ query_results: result });
 });
 
-booksRouter.get("/:id", async (req, res) => {
+booksRouter.get("/:id", async (req: Request, res: Response) => {
   try {
     const query = {
       _id: new ObjectId(req.params.id),
@@ -190,7 +190,7 @@ booksRouter.get("/:id", async (req, res) => {
   }
 });
 
-booksRouter.post("/create", async (req, res) => {
+booksRouter.post("/create", async (req: Request, res: Response) => {
   console.log(req.body);
   try {
     await collections?.books?.insertOne(req.body);
@@ -200,7 +200,7 @@ booksRouter.post("/create", async (req, res) => {
   }
 });
 
-booksRouter.put("/:id", async (req, res) => {
+booksRouter.put("/:id", async (req: Request, res: Response) => {
   try {
     const query = {
       _id: new ObjectId(req.params.id),
@@ -213,7 +213,7 @@ booksRouter.put("/:id", async (req, res) => {
   }
 });
 
-booksRouter.delete("/:id", async (req, res) => {
+booksRouter.delete("/:id", async (req: Request, res: Response) => {
   try {
     const query = {
       _id: new ObjectId(req.params.id),
