@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { connectToDatabase } from "./services/database.service";
 import { booksRouter } from "./routes/books.router";
+import { publicRouter } from "./routes/public.router";
 import dotenv from "dotenv";
 import cors from "cors";
 dotenv.config();
@@ -12,6 +13,8 @@ connectToDatabase()
     app.use(cors());
 
     app.use("/books", booksRouter);
+
+    app.use("/public", publicRouter);
 
     app.listen(port, () => {
       console.log(`Server started at http://localhost:${port}`);
